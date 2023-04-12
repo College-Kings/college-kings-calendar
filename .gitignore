@@ -1,0 +1,10 @@
+.idea/
+.vscode/
+lib/
+renpy/
+
+**/.DS_Store
+
+**/__pycache__/
+
+*.rpyc
