@@ -1,9 +1,9 @@
+import enum
+from enum import Enum
+
 """renpy
 init python:
 """
-
-import enum
-from enum import Enum
 
 
 class DayOfTheWeek(Enum):
@@ -15,3 +15,7 @@ class DayOfTheWeek(Enum):
     FRIDAY = enum.auto()
     SATURDAY = enum.auto()
     SUNDAY = enum.auto()
+
+    @classmethod
+    def _missing_(cls, value):
+        return cls.NULL
