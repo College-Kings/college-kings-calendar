@@ -1,14 +1,13 @@
+from __future__ import annotations
+import datetime
+
+from renpy import store
+
+from game.calendar.CalendarItem_ren import CalendarItem
+
 """renpy
 init python:
 """
-
-from __future__ import annotations
-import datetime
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from game.calendar.CalendarItem_ren import CalendarItem
-    from renpy import store
 
 
 class Calendar:

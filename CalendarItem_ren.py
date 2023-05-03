@@ -1,12 +1,10 @@
+from dataclasses import dataclass
+
+from renpy import store
+
 """renpy
 init python:
 """
-
-from dataclasses import dataclass
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from renpy import store
 
 
 @dataclass
