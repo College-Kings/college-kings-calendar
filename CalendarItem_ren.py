@@ -1,6 +1,10 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 from renpy import store
+
+calendar_items: dict[str, CalendarItem]
 
 """renpy
 init python:

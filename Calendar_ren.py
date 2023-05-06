@@ -1,9 +1,14 @@
 from __future__ import annotations
 import datetime
+from typing import Optional
 
 from renpy import store
 
 from game.calendar.CalendarItem_ren import CalendarItem
+
+calendar_now: datetime.datetime
+calendar_checklist: dict[tuple[int, int, int], list[CalendarItem]]
+calendar_items: dict[str, CalendarItem]
 
 """renpy
 init python:
@@ -42,22 +47,20 @@ class Calendar:
         description: str = "",
     ) -> CalendarItem:
         calendar_item = CalendarItem(id_, display_name, description, year, month, day)
-        store.calendar_checklist.setdefault((year, month, day), []).append(
-            calendar_item
-        )
+        calendar_checklist.setdefault((year, month, day), []).append(calendar_item)
         return calendar_item
 
     @staticmethod
     def complete_todo(id_: str) -> CalendarItem:
-        calendar_item: CalendarItem = store.calendar_items[id_]
+        calendar_item: CalendarItem = calendar_items[id_]
         calendar_item.completed = True
         return calendar_item
 
     @staticmethod
     def remove_todo(id_: str) -> None:
-        item: CalendarItem = store.calendar_items[id_]
-        store.calendar_checklist[item.day, item.month, item.year].remove(item)
-        del store.calendar_items[id_]
+        item: CalendarItem = calendar_items[id_]
+        calendar_checklist[item.day, item.month, item.year].remove(item)
+        del calendar_items[id_]
 
     @staticmethod
     def add_days(number_of_days: int = 1) -> None:
@@ -74,8 +77,8 @@ class Calendar:
 
     @staticmethod
     def contains(id_: str) -> bool:
-        return id_ in store.calendar_items
+        return id_ in calendar_items
 
     @staticmethod
-    def find(id_: str) -> CalendarItem:
-        return store.calendar_items.get(id_, None)
+    def find(id_: str) -> Optional[CalendarItem]:
+        return calendar_items.get(id_, None)
