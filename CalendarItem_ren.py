@@ -41,3 +41,9 @@ class CalendarItem:
 
     def __post_init__(self) -> None:
         store.calendar_items[self.id_] = self
+
+    def __eq__(self, __value: object) -> bool:
+        if not isinstance(__value, CalendarItem):
+            return NotImplemented
+
+        return self.id_ == __value.id_
