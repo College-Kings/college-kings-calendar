@@ -16,6 +16,50 @@ init python:
 
 
 class Calendar:
+    """
+    A class for managing a calendar and its associated to-do items.
+
+    Attributes:
+        MONTH_DAYS (list[int]): A list of the number of days in each month, where the first element is 0.
+
+    Methods:
+        is_leap_year(year: int) -> bool:
+            Determines if a given year is a leap year or not.
+            Returns True if it is a leap year, False otherwise.
+
+        month_range(year: int, month: int) -> tuple[int, int]:
+            Calculates the weekday (0-6 ~ Mon-Sun) and number of days (28-31) for a given year and month.
+            Raises an Exception if month is not between 1-12.
+            Returns a tuple containing the weekday and number of days.
+
+        add_todo(year: int, month: int, day: int, id_: str, display_name: str, description: str = "") -> CalendarItem:
+            Adds a to-do item to the calendar for the given year, month, and day.
+            Returns the newly created CalendarItem.
+
+        complete_todo(id_: str) -> CalendarItem:
+            Marks the specified to-do item as completed.
+            Returns the updated CalendarItem.
+
+        remove_todo(id_: str) -> None:
+            Removes the specified to-do item from the calendar.
+
+        add_days(number_of_days: int = 1) -> None:
+            Advances the calendar by the specified number of days.
+
+        set_date(year: int, month: int, day: int) -> None:
+            Sets the current date of the calendar to the specified date.
+            Equivalent to set_time().
+            Deprecated in favor of add_days().
+
+        contains(id_: str) -> bool:
+            Determines if the specified to-do item is present in the calendar.
+            Returns True if it is present, False otherwise.
+
+        find(id_: str) -> Optional[CalendarItem]:
+            Returns the CalendarItem corresponding to the specified ID, if present in the calendar.
+            Returns None otherwise.
+    """
+
     MONTH_DAYS: list[int] = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
     @staticmethod
