@@ -1,4 +1,3 @@
-from __future__ import annotations
 import enum
 from enum import Enum
 
@@ -37,5 +36,5 @@ class DayOfTheWeek(Enum):
     SUNDAY = enum.auto()
 
     @classmethod
-    def _missing_(cls, value: object) -> DayOfTheWeek:
+    def _missing_(cls, value: object) -> "DayOfTheWeek":
         return cls.NULL
