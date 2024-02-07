@@ -88,13 +88,13 @@ class Calendar:
         id_: str,
         display_name: str,
         description: str = "",
-    ) -> CalendarItem:
+    ) -> "CalendarItem":
         calendar_item = CalendarItem(id_, display_name, description, year, month, day)
         calendar_checklist.setdefault((year, month, day), []).append(calendar_item)
         return calendar_item
 
     @staticmethod
-    def complete_todo(id_: str) -> CalendarItem:
+    def complete_todo(id_: str) -> "CalendarItem":
         calendar_item: CalendarItem = calendar_items[id_]
         calendar_item.completed = True
         return calendar_item
@@ -123,5 +123,5 @@ class Calendar:
         return id_ in calendar_items
 
     @staticmethod
-    def find(id_: str) -> Optional[CalendarItem]:
+    def find(id_: str) -> Optional["CalendarItem"]:
         return calendar_items.get(id_, None)
